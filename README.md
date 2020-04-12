@@ -4,7 +4,16 @@
 ## Проектирование сервиса
   - Использованный стек технологий: Python 3, Sqlite, Telegram Bot API, OpenWeather API
   - Пользовательский интерфейс: чат-бот в Telegram
-  - Данные о погоде, полученные с API, подставляются в тестовый шаблон 'Weather in {city} now: Temperature: {temp}°C [{min_temp}°C...{max_temp}°C] Feels like: {fl_temp}°C Pressure: {pressure} mmHg Humidity: {humidity}% Wind: {windspeed} m/s ({winddirection})' и отправляются пользователю.
+  - Данные о погоде, полученные с API, подставляются в текстовый шаблон 
+   ```
+  Weather in {city} now: 
+  Temperature: {temp}°C [{min_temp}°C...{max_temp}°C] 
+  Feels like: {fl_temp}°C 
+  Pressure: {pressure} mmHg 
+  Humidity: {humidity}% 
+  Wind: {windspeed} m/s ({winddirection})
+   ```
+  и отправляются пользователю.
 ## Процесс работы программы
   
   Данные приходят от пользователя через интерфейс мессенджера
