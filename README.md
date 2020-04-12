@@ -26,9 +26,12 @@
  #Weather api
  WEATHER_API_KEY = 'Place your token here'
  ```
-  Запустите бота из его директории
+  Активируйте venv.
   
  ```
- source venv/bin/activate
+ source venv/bin/activate 
+ ```
+   Запустите бота из его директории.
+ ```
  python3 main.py
  ```
