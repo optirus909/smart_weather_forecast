@@ -11,7 +11,7 @@
   - полученный ответ из базы используется для формирования ответа пользователю
   - ответ отправляется пользователю
 ### Запуск программы:
-  - Введите ваши ключи от Telegram Bot API, OpenWeather API в файл bot_config.py
+   Введите ваши ключи от Telegram Bot API, OpenWeather API в файл bot_config.py
  ```
  [bot_config.py]
  #Telegram
@@ -20,7 +20,7 @@
  #Weather api
  WEATHER_API_KEY = 'Place your token here'
  ```
-   - Запустите бота из его директории
+  Запустите бота из его директории
   
  ```
  source venv/bin/activate
