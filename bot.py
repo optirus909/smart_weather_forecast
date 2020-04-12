@@ -12,6 +12,13 @@ class WeatherBot:
         self._bot = telepot.Bot(telegram_api_token)
         self._weather = WeatherClient(weather_api_key)
         self._current_state = 'country'
+        with sqlite3.connect('users_data.db') as conn:
+            cursor = conn.cursor()
+            cursor.execute("create table if not exists loc (id text, country text, city text)")
+            conn.commit()
+
+
+
 
     def _handle(self, msg):
         content_type, chat_type, chat_id = telepot.glance(msg)
