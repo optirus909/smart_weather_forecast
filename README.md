@@ -24,7 +24,7 @@
 ## Демонстрация работы сервиса
  Посмотрите, как работает сервис, перейдя [по ссылке.](https://youtu.be/ke0G2mtqqlc)
  
-### Запуск программы:
+## Запуск программы:
    Введите ваши ключи от [Telegram Bot API](https://core.telegram.org/bots/api), [OpenWeather API](https://openweathermap.org/api) в файл bot_config.py
  ```
  [bot_config.py]
