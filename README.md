@@ -54,5 +54,5 @@ foo@bar:smart_weather_forecast$ source venv/bin/activate
  ```
    Запустите бота из его директории.
  ```console
-foo@bar:smart_weather_forecast$  python3 main.py 
+foo@bar:smart_weather_forecast$ python3 main.py 
 ```
