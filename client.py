@@ -40,27 +40,66 @@ class WeatherClient:
         temp = int(temp)
         return temp if temp <= 0 else '+' + str(temp)
 
+    def _get_weather_emoji(self, description):
+        if description == "Rain":
+            return "🌧"
+        elif description == "Clear":
+            return "☀️"
+        elif description == "Thunderstorm":
+            return "⛈"
+        elif description == "Clouds":
+            return "☁️"
+        elif description == "Tornado":
+            return "🌪"
+        elif description == "Snow":
+            return "❄️"
+        else:
+            return "🌫"
+
+    def _get_recommendations(self, weather):
+        resp = ''
+
+        temperature = weather['main']['temp']
+        description = weather['weather'][0]['main']
+
+        if temperature > 20:
+            resp += 'The weather is fine!\n Wear a t-shirt and shorts.'
+        elif temperature > 10:
+            resp += 'A little chilly. Put on a shirt or sweater\n and the day will be comfortable!'
+        elif temperature > 0:
+            resp += 'Put on your jacket, it\'s cold enough today!'
+        else:
+            resp += 'It\'s very cold today, don\'t forget your scarf and hat!'
+
+        if description == "Rain":
+            resp += '\n The weather is rainy, take an umbrella with you.'
+        elif description == "Clear":
+            resp += '\n The sky is clear, take your sunglasses with you.'
+
+        return resp
+
     def _format_weather(self, res):
-        return 'Weather in {city} now:\n' \
-               'Temperature: {temp}°C ' \
-               '[{min_temp}°C...{max_temp}°C]\n' \
-               'Feels like: {fl_temp}°C\n' \
-               'Pressure: {pressure} mmHg\n' \
-               'Humidity: {humidity}%\n' \
-               'Wind: {windspeed} m/s ({winddirection})' \
+        return '📍 {city}, {country} : {emoji} {weather}\n\n' \
+               '🌡 {temp}°C \n' \
+               'Feels Like: {fl_temp}°C\n\n' \
+               '💨 {windspeed} m/s ({winddirection})\n\n' \
+               '💧 {humidity}%\n' \
+               '⏱ {pressure} mmHg\n\n' \
+               '✅️ {recommendations}' \
                ''.format(city=res['name'],
+                         country=res['sys']['country'],
+                         weather=res['weather'][0]['description'].title(),
+                         emoji=self._get_weather_emoji(res['weather'][0]['main']),
                          temp=self._get_pretty_temperature(res['main']['temp']),
-                         min_temp=self._get_pretty_temperature(res['main']['temp_min']),
-                         max_temp=self._get_pretty_temperature(res['main']['temp_max']),
                          fl_temp=self._get_pretty_temperature(res['main']['feels_like']),
                          pressure=res['main']['pressure'],
                          humidity=res['main']['humidity'],
                          windspeed=int(res['wind']['speed']),
-                         winddirection=self._get_wind_direction(res['wind']['deg']))
+                         winddirection=self._get_wind_direction(res['wind']['deg']),
+                         recommendations=self._get_recommendations(res))
 
     def get_weather(self, city):
         params = {'q': city, 'units': 'metric'}
-
         try:
             res = self._request('data/2.5/weather', params, self.GET).json()
             return self._format_weather(res)
@@ -68,4 +107,4 @@ class WeatherClient:
 
         except Exception as err:
             print(err)
-            return 'Please, enter correct city name using /setlocation command.'
+            return 'Please, enter correct city name.'
