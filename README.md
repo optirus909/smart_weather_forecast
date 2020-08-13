@@ -1,22 +1,30 @@
 # Умный сервис прогноза погоды
-## Средний уровень сложности
+Сервис помогает пользователю узнать погоду в нужном ему населенном пункте.
 
-- **Проектирование сервиса**:
+## Проектирование сервиса
   - Использованный стек технологий: Python 3, Sqlite, Telegram Bot API, OpenWeather API
   - Пользовательский интерфейс: чат-бот в Telegram
-  - Данные о погоде, полученные с API, подставляются в тестовый шаблон 'Weather in {city} now: Temperature: {temp}°C [{min_temp}°C...{max_temp}°C] Feels like: {fl_temp}°C Pressure: {pressure} mmHg Humidity: {humidity}% Wind: {windspeed} m/s ({winddirection})' и отправляются пользователю.
-- **Процесс работы программы**:
+  - Данные о погоде, полученные с API, подставляются в текстовый шаблон 
+   ```
+  Weather in {city} now: 
+  Temperature: {temp}°C [{min_temp}°C...{max_temp}°C] 
+  Feels like: {fl_temp}°C 
+  Pressure: {pressure} mmHg 
+  Humidity: {humidity}% 
+  Wind: {windspeed} m/s ({winddirection})
+   ```
+  и отправляются пользователю.
+## Процесс работы программы
   
   Данные приходят от пользователя через интерфейс мессенджера
   - формируется и отправляется запрос в базу данных
   - полученный ответ из базы используется для формирования ответа пользователю
   - ответ отправляется пользователю
   
- - **Демонстрация работы сервиса**:
+## Демонстрация работы сервиса
+ Посмотрите, как работает сервис, перейдя [по ссылке.](https://youtu.be/ke0G2mtqqlc)
  
-    Посмотрите, как работает сервис, перейдя [по ссылке.](https://youtu.be/ke0G2mtqqlc)
- 
-### Запуск программы:
+## Запуск программы:
    Введите ваши ключи от [Telegram Bot API](https://core.telegram.org/bots/api), [OpenWeather API](https://openweathermap.org/api) в файл bot_config.py
  ```
  [bot_config.py]
@@ -26,9 +34,12 @@
  #Weather api
  WEATHER_API_KEY = 'Place your token here'
  ```
-  Запустите бота из его директории
+  Активируйте venv.
   
  ```
- source venv/bin/activate
+ source venv/bin/activate 
+ ```
+   Запустите бота из его директории.
+ ```
  python3 main.py
  ```
